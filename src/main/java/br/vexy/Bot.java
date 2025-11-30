@@ -22,11 +22,6 @@ public class Bot {
     public static void main(String[] args) {
         String botToken = BotConfig.getBotToken();
 
-        if (botToken == null || botToken.isEmpty()) {
-            logger.error("Bot token not found in config.properties. Please provide a valid token.");
-            return; // Exit if no token is found
-        }
-
         try {
             // Build JDA instance
             jda = JDABuilder.createDefault(botToken)
