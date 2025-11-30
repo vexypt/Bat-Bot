@@ -2,6 +2,7 @@ package br.vexy.listeners;
 
 import br.vexy.commands.Command;
 import br.vexy.commands.HelpCommand;
+import br.vexy.commands.InfoCommand;
 import br.vexy.commands.PingCommand;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.events.session.ReadyEvent;
@@ -20,6 +21,7 @@ public class CommandListener extends ListenerAdapter {
     public CommandListener() {
         commands.put("ping", new PingCommand());
         commands.put("help", new HelpCommand());
+        commands.put("info", new InfoCommand());
         logger.info("Registered {} commands.", commands.size());
     }
 

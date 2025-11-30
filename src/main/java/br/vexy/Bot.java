@@ -1,5 +1,8 @@
 package br.vexy;
 
+import br.vexy.commands.HelpCommand;
+import br.vexy.commands.InfoCommand;
+import br.vexy.commands.PingCommand;
 import br.vexy.config.BotConfig;
 import br.vexy.listeners.CommandListener;
 import net.dv8tion.jda.api.JDA;
@@ -49,8 +52,9 @@ public class Bot {
         logger.info("Registering Slash Commands...");
         jda.updateCommands()
                 .addCommands(
-                        Commands.slash("ping", "Checks the bot's latency to Discord's gateway"),
-                        Commands.slash("help", "Provides information about available commands")
+                        Commands.slash(new PingCommand().getName(), new PingCommand().getDescription()),
+                        Commands.slash(new HelpCommand().getName(), new HelpCommand().getDescription()),
+                        Commands.slash(new InfoCommand().getName(), new InfoCommand().getDescription())
                 )
                 .queue(success -> logger.info("Slash commands registered successfully!"),
                         failure -> logger.error("Failed to register slash commands: ", failure));
