@@ -20,7 +20,7 @@ public final class BotConfig {
 
     static {
         String loadedToken = null;
-        Dotenv dotenv = null;
+        Dotenv dotenv;
 
         try {
             // 1. Attempt to load the .env file from the project root.
