@@ -12,20 +12,22 @@ import net.dv8tion.jda.api.requests.GatewayIntent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.EnumSet;
-
 
 public class Bot {
     private static final Logger logger = LoggerFactory.getLogger(Bot.class);
     private static JDA jda;
 
     public static void main(String[] args) {
-        String botToken = BotConfig.getBotToken();
+        final String botToken = BotConfig.getBotToken();
 
         try {
             // Build JDA instance
             jda = JDABuilder.createDefault(botToken)
-                    .enableIntents(EnumSet.allOf(GatewayIntent.class))
+                    .enableIntents(
+                            GatewayIntent.MESSAGE_CONTENT,
+                            GatewayIntent.GUILD_MESSAGES,
+                            GatewayIntent.GUILD_MEMBERS
+                    )
                     .addEventListeners(new CommandListener())
                     .build();
 
@@ -45,11 +47,16 @@ public class Bot {
         }
 
         logger.info("Registering Slash Commands...");
+
+        PingCommand pingCmd = new PingCommand();
+        HelpCommand helpCmd = new HelpCommand();
+        InfoCommand infoCmd = new InfoCommand();
+
         jda.updateCommands()
                 .addCommands(
-                        Commands.slash(new PingCommand().getName(), new PingCommand().getDescription()),
-                        Commands.slash(new HelpCommand().getName(), new HelpCommand().getDescription()),
-                        Commands.slash(new InfoCommand().getName(), new InfoCommand().getDescription())
+                        Commands.slash(pingCmd.getName(), pingCmd.getDescription()),
+                        Commands.slash(helpCmd.getName(), helpCmd.getDescription()),
+                        Commands.slash(infoCmd.getName(), infoCmd.getDescription())
                 )
                 .queue(success -> logger.info("Slash commands registered successfully!"),
                         failure -> logger.error("Failed to register slash commands: ", failure));
