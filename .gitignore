@@ -1,0 +1,71 @@
+###########################
+#       BUILD ARTIFACTS
+###########################
+# Maven build directory
+/target/
+
+# Common log files and directories
+*.log
+logs/
+log/
+
+# Eclipse temporary files
+*.class
+*.jar
+*.war
+*.ear
+*.zip
+*.tar
+*.gz
+hs_err_pid*
+
+###########################
+#     IDE CONFIGURATION
+###########################
+
+# IntelliJ IDEA
+# Directory for project settings and user-specific files
+/.idea/
+# Workspace files
+*.iws
+# Module files (often generated)
+*.iml
+*.ipr
+
+# Visual Studio Code
+# User-specific workspace settings and launch configs
+/.vscode/
+
+# NetBeans (in case of collaboration)
+/nbproject/private/
+/build/
+nbproject/
+*.nbattrs
+
+###########################
+#   OPERATING SYSTEMS
+###########################
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+###########################
+#    SECRETS / SENSITIVE DATA
+###########################
+# IMPORTANT: Never commit sensitive data or tokens.
+# The actual environment file containing secrets (e.g., BOT_TOKEN)
+# This file MUST NOT be version controlled.
+/.env
+
+# Optional: If you use the resources folder for non-versioned config:
+/src/main/resources/*.properties
+/src/main/resources/*.yml
+/src/main/resources/*.json
+
+###########################
+#   GIT CONFIGURATION
+###########################
+# Ignore local git hooks configuration (if any)
+/.git/hooks
